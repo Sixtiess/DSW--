@@ -8,6 +8,14 @@
 	
 }
 
+.answer {
+	
+}
+
 .card:hover {
 	
+}
+
+.result {
+	visibility: hidden;
 }

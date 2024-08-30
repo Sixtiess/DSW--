@@ -18,14 +18,14 @@
 
 
 .card:hover {
-  background-color: #c7c7c7;
-  transform: scale(1.1);
-  transition: all 0.2s ease-in-out;
+	background-color: #c7c7c7;
+	transform: scale(1.1);
+	transition: all 0.2s ease-in-out;
 }
 
 
 
 .flex-container {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }

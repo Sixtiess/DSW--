@@ -5,9 +5,18 @@
 }
 
 .card {
-	
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	margin:50px;
+	background-color: gray;
+	width: 250px;
+	height: 400px;
+	border-radius: 25px;
 }
 
+<<<<<<< HEAD
 .answer {
 	
 }
@@ -18,4 +27,18 @@
 
 .result {
 	visibility: hidden;
+=======
+
+.card:hover {
+	background-color: #c7c7c7;
+	transform: scale(1.1);
+	transition: all 0.2s ease-in-out;
+}
+
+
+
+.flex-container {
+	display: flex;
+	justify-content: center;
+>>>>>>> d211863fd19fcdf5cfb314d662414ba412f0c2f5
 }

@@ -16,18 +16,13 @@
 	border-radius: 25px;
 }
 
-<<<<<<< HEAD
 .answer {
-	
-}
-
-.card:hover {
 	
 }
 
 .result {
 	visibility: hidden;
-=======
+}
 
 .card:hover {
 	background-color: #c7c7c7;
@@ -40,5 +35,4 @@
 .flex-container {
 	display: flex;
 	justify-content: center;
->>>>>>> d211863fd19fcdf5cfb314d662414ba412f0c2f5
 }

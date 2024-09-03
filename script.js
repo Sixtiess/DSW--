@@ -1,16 +1,75 @@
 $(document).ready(function(){
+	//An array of all the possible questions
+	const allQuestions = ["What is 1 + 1?", "What is 2 + 2?"];
+	
+	//An array that contains the answers to those questions, in order (so answers[0] = the answer to allQuestions[0], answers[1] = right answer to allQuestions[1], etc.)
+	//The answer is not stored as the actual answer to the question, but as the number corresponding to the answer a through d (0 = a, 1 = b, 2 = c, 3 = d);
+	const answers = ["2", "0"];
+	
+	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
+	const answersText = [
+		"1", "87", "2", "idk",
+		"4", "12094124", "sqrt(43)", "e"
+	];
+	
+	//An array that contains question objects that have an answer and a question, allows for the questions to be scrambled in a random order, and can also allow a set number of random questions to be chosen
+	const questions = [];
+	
+	//Adding the answers and questions into the array of questions
+	for (i = 0; i < 10; i++) {
+		if (allQuestions[i] != null && answers[i] != null) {
+			if (answersText[(4 * i) + 3] != null) {
+				const question = {
+					qText: allQuestions[i],
+					answer: answers[i],
+					answerText: [answersText[(4 * i)], answersText[(4 * i) + 1], answersText[(4 * i) + 2], answersText[(4 * i) + 3]]
+				};
+				questions[i] = question;
+			}
+		}
+	}
 	
 	//Variable to track the question the user is currently on
-	var qNum = 1;
+	var qNum = 0;
 	
-	//Array of the answers to each question, in order
-	//Used to check if the user answered the question correctly or incorrectly
-	const answers = ["a", "b", "c"]; 
+	refreshQuestion();
 	
-	//When a card is clicked, checks if the card had the correct answer or not
+	refreshAnswers();
+	
+	//When a card is clicked, checks if the card had the correct answer or not, then displays the appropriate result message and moves to the next question
 	$(".card").click(function() {
-		// $(".result").text($(this).getAttribute("data-answer"));
-		$(this).text("test");
+		let userAnswer = this.dataset.answer;
+		let correctAnswer = questions[qNum].answer;
 		$(".result").css("visibility", "visible");
+		
+		//checking if the user got the question right
+		if (userAnswer == correctAnswer) {
+			$(".result").text("Correct!");
+			
+			//Checks if there is another question after the current question, and goes to that question if the user gets the current question correct
+			if (questions[qNum + 1] != null) {
+				setTimeout(function() {
+					qNum++;
+					refreshQuestion();
+					refreshAnswers();
+				}, 1500);
+			}
+		} else {
+			$(".result").text("Incorrect! Try again.");
+		}
+		
 	});
+	
+	function refreshQuestion() {
+		console.log(questions[qNum].qText);
+		$(".question").text(questions[qNum].qText);
+		$(".result").css("visibility", "hidden");
+	}
+	
+	function refreshAnswers() {
+		$(".card").each(function() {
+			$(this).text(questions[qNum].answerText[parseInt(this.getAttribute("data-answer"))]);
+		}); 
+	}
+	
 });

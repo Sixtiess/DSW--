@@ -17,6 +17,13 @@
 	transition: all 0.2s ease-in-out;
 }
 
+.answer {
+	
+}
+
+.result {
+	visibility: hidden;
+}
 
 .card:hover {
 	background-color: #c7c7c7;

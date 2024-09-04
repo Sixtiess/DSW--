@@ -3,7 +3,9 @@
 	margin: auto;
 	display: block;
 	font-size: 70px;
-	visibility: hidden;
+	border: 4mm ridge rgba(60, 145, 250, .6);
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 .card {
@@ -14,10 +16,10 @@
 	margin:50px;
 	background-color: gray;
 	width: 250px;
-	height: 400px;
+	height: 400px; 
 	border-radius: 25px;
 	transition: all 0.2s ease-in-out;
-	visibility: hidden;
+	font-size: 50px;
 }
 
 .answer {
@@ -25,7 +27,7 @@
 }
 
 .result {
-	
+	visibility: hidden;
 }
 
 .card:hover {
@@ -39,12 +41,12 @@
 .flex-container {
 	display: flex;
 	justify-content: center;
+	border: 4mm ridge rgba(60, 145, 250, .6);
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
-.startPage {
-	
-}
 
-#startButton {
-	
+html {
+	border: 10mm solid rgba(145, 195, 255,1);  
 }

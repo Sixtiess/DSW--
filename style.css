@@ -29,7 +29,7 @@
 }
 
 .result {
-	visibility: hidden;
+	height: 100px;
 }
 
 .card:hover {
@@ -50,7 +50,6 @@
 }
 
 .startPage {
-	display: inline;
 	text-align: center;
 	font-size: 100px;
 }
@@ -60,5 +59,5 @@
 }
 
 html {
-	border: 10mm solid rgba(145, 195, 255,1);  
+	border: 10mm solid rgba(145, 195, 255,1);
 }

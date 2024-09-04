@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	$(".result").text("");
+	
 	//An array of all the possible questions
 	const allQuestions = [
 		"What is 1 + 1?", 
@@ -46,7 +48,7 @@ $(document).ready(function(){
 	$(".card").click(function() {
 		let userAnswer = this.dataset.answer;
 		let correctAnswer = questions[qNum].answer;
-		$(".result").css("visibility", "visible");
+		
 		
 		//checking if the user got the question right
 		if (userAnswer == correctAnswer) {
@@ -69,7 +71,7 @@ $(document).ready(function(){
 	function refreshQuestion() {
 		console.log(questions[qNum].qText);
 		$(".question").text(questions[qNum].qText);
-		$(".result").css("visibility", "hidden");
+		$(".result").text("");
 	}
 	
 	function refreshAnswers() {

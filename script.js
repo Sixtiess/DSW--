@@ -78,4 +78,15 @@ $(document).ready(function(){
 		}); 
 	}
 	
+	
+	$("#startButton").click(function() {
+		startQuiz();
+	});
+	
+	function startQuiz() {
+		$(".startPage").css("visibility", "hidden");
+		$(".question").css("visibility", "visible");
+		$(".card").css("visibility", "visible");
+	}
+	
 });

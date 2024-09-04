@@ -16,7 +16,7 @@
 	margin:50px;
 	background-color: gray;
 	width: 250px;
-	height: 400px;
+	height: 400px; 
 	border-radius: 25px;
 	transition: all 0.2s ease-in-out;
 	font-size: 50px;
@@ -48,5 +48,5 @@
 
 
 html {
-	border: 10mm solid rgba(145, 195, 255,1);
+	border: 10mm solid rgba(145, 195, 255,1);  
 }

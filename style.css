@@ -42,7 +42,9 @@
 }
 
 .startPage {
-	
+	display: inline;
+	text-align: center;
+	font-size: 100px;
 }
 
 #startButton {

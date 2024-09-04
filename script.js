@@ -84,7 +84,7 @@ $(document).ready(function(){
 	});
 	
 	function startQuiz() {
-		$(".startPage").css("visibility", "hidden");
+		$(".startPage").hide();	
 		$(".question").css("visibility", "visible");
 		$(".card").css("visibility", "visible");
 	}

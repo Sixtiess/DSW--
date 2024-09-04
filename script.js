@@ -50,7 +50,7 @@ $(document).ready(function() {
 		let correctAnswer = questions[qNum].answer;
 		
 		
-		//checking if the user got the question right
+		//checking if the user got the question right (and if they haven't already answered this question correctly, so that the result text won't say "Incorrect!" if the user tries to choose another incorrect answer after answering correctly)
 		if (userAnswer == correctAnswer) {
 			$(".result").text("Correct!");
 			
@@ -63,7 +63,10 @@ $(document).ready(function() {
 				}, 1500);
 			}
 		} else {
-			$(".result").text("Incorrect! Try again.");
+			//checking if the user hasn't already answered this question correctly so that the result will still say "Correct!" even if they click on another card
+			if ($(".result").text() != "Correct!") {
+				$(".result").text("Incorrect! Try again.");
+			}
 		}
 		
 	});

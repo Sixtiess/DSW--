@@ -4,6 +4,7 @@ $(document).ready(function() {
 	//An array of all the possible questions
 	const allQuestions = [
 		"What is point-slope form?",
+		"What is the derivative of a function where f(x) = x^n?",
 		"Find the derivative: f(x) = sqrt(x)",
 		"What is the value of sin(0)?",
 		"What is one kind of nonremoveable discontinuity?",
@@ -12,33 +13,62 @@ $(document).ready(function() {
 		"Find the derivative: f(x) = sin(x)"
 	];
 	
-	//An array that contains the answers to those questions, in order (so answers[0] = the answer to allQuestions[0], answers[1] = right answer to allQuestions[1], etc.)
+	//An array that contains the answers to those questions, in order
 	//The answer is not stored as the actual answer to the question, but as the number corresponding to the answer a through d (0 = a, 1 = b, 2 = c, 3 = d);
+	//Make sure to make the first entry the correct one! The order of the questions will be shuffled when they are displayed but the 
 	const answers = [
-		"2",
-		"3",
-		"0",
-		"2",
-		"1",
-		"3",
-		"0"
+		{answerText: "y-y1=m(x-x1)", correct: "true"}, 
+		{answerText: "y=a(x-h)+k", correct: "false"}, 
+		{answerText: "y=mx+b", correct: "false"}, 
+		{answerText: "x=nx^n-1", correct: "false"}, 
+	
+	
+		{answerText: "f'(x) = nx^(n-1)", correct: "true"}, 
+		{answerText: "f'(x) = x^(n-2)", correct: "false"}, 
+		{answerText: "f'(x) = 1/(x^n)", correct: "false"}, 
+		{answerText: "f'(x) = nx", correct: "false"},
+		
+		
+		{answerText: "f'(x) = 1/2*sqrt(x)", correct: "true"}, 
+		{answerText: "f'(x) = 1/sqrt(x)", correct: "false"}, 
+		{answerText: "f(x) = 1/2*sqrt(x)", correct: "false"}, 
+		{answerText: "f(x) = 1/sqrt(x)", correct: "false"},
+		
+		
+		{answerText: "0", correct: "true"}, 
+		{answerText: "1", correct: "false"}, 
+		{answerText: "1/2", correct: "false"}, 
+		{answerText: "sqrt(3)/2", correct: "false"},
+		
+		
+		{answerText: "Hole", correct: "true"}, 
+		{answerText: "Euclidian", correct: "false"}, 
+		{answerText: "Asymptotic", correct: "false"}, 
+		{answerText: "Triangular", correct: "false"},
+		
+		
+		{answerText: "Slope", correct: "true"}, 
+		{answerText: "Area under a function", correct: "false"}, 
+		{answerText: "Volume", correct: "false"}, 
+		{answerText: "Domain", correct: "false"},
+		
+		
+		{answerText: "Infinite", correct: "true"}, 
+		{answerText: "10", correct: "false"}, 
+		{answerText: "5", correct: "false"}, 
+		{answerText: "2", correct: "false"},
+		
+		
+		{answerText: "f'(x) = cos(x)", correct: "true"}, 
+		{answerText: "f'(x) = tan(x)", correct: "false"}, 
+		{answerText: "f'(x) = csc(x)", correct: "false"}, 
+		{answerText: "f'(x) = sec(x)", correct: "false"},
+		
+		
 	];
 	
-	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
-	const answersText = [ 
-		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1",
-		"f(x) = 1/sqrt(x)","f(x) = 1/2*sqrt(x)","f'(x) = 1/sqrt(x)","f'(x) = 1/2*sqrt(x)"
-		"1","0","1/2","sqrt(3)/2",
-		"Hole","Euclidian","Asymptotic","Triangular",
-		"Area under a function","Slope","Volume","Domain",
-		"2","5","10","Infinite",
-		"f'(x) = cos(x)","f'(x) = tan(x)","f'(x) = csc(x)","f'(x) = sec(x)"
-	];
+		
 	
-	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
-	const answersText = [
-		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1"
-	];
 	
 	//An array that contains question objects that have an answer and a question, allows for the questions to be scrambled in a random order, and can also allow a set number of random questions to be chosen
 	const questions = [];
@@ -46,11 +76,10 @@ $(document).ready(function() {
 	//Adding the answers and questions into the array of questions
 	for (i = 0; i < 10; i++) {
 		if (allQuestions[i] != null && answers[i] != null) {
-			if (answersText[(4 * i) + 3] != null) {
+			if (answers[(4 * i) + 3] != null) {
 				const question = {
 					qText: allQuestions[i],
-					answer: answers[i],
-					answerText: [answersText[(4 * i)], answersText[(4 * i) + 1], answersText[(4 * i) + 2], answersText[(4 * i) + 3]]
+					answerArray: [answers[(4 * i)], answers[(4 * i) + 1], answers[(4 * i) + 2], answers[(4 * i) + 3]]
 				};
 				questions[i] = question;
 			}
@@ -58,7 +87,9 @@ $(document).ready(function() {
 	}
 	
 	//Variable to track the question the user is currently on
-	var qNum = 0;
+	//var qNum = 0;
+	
+	shuffleArray(questions);
 	
 	refreshQuestion();
 	
@@ -66,18 +97,23 @@ $(document).ready(function() {
 	
 	//When a card is clicked, checks if the card had the correct answer or not, then displays the appropriate result message and moves to the next question
 	$(".card").click(function() {
-		let userAnswer = this.dataset.answer;
-		let correctAnswer = questions[qNum].answer;
+		var userIndex = parseInt(this.dataset.answer);
 		
+		let userAnswer = $(this).text();
+		let correctAnswer = questions[0].answerArray[0].answerText;
+		
+		console.log(userAnswer);
+		console.log(correctAnswer);
 		
 		//checking if the user got the question right (and if they haven't already answered this question correctly, so that the result text won't say "Incorrect!" if the user tries to choose another incorrect answer after answering correctly)
-		if (userAnswer == correctAnswer) {
+		if (userAnswer == correctAnswer && $(".result").text() != "Incorrect!") {
 			$(".result").text("Correct!");
 			
 			//Checks if there is another question after the current question, and goes to that question if the user gets the current question correct
-			if (questions[qNum + 1] != null) {
+			if (questions[1] != null) {
+				questions.splice(0, 1);
 				setTimeout(function() {
-					qNum++;
+					//qNum++;
 					refreshQuestion();
 					refreshAnswers();
 				}, 1500);
@@ -85,21 +121,39 @@ $(document).ready(function() {
 		} else {
 			//checking if the user hasn't already answered this question correctly so that the result will still say "Correct!" even if they click on another card
 			if ($(".result").text() != "Correct!") {
-				$(".result").text("Incorrect! Try again.");
+				
+				var temp = questions[0];
+				questions.splice(0, 1);
+				questions.push(temp);
+				
+				$(".result").text("Incorrect!");
+				
+				setTimeout(function() {
+					refreshQuestion();
+					refreshAnswers();
+				}, 500);
 			}
 		}
 		
 	});
 	
 	function refreshQuestion() {
-		console.log(questions[qNum].qText);
-		$(".question").text(questions[qNum].qText);
+		$(".question").text(questions[0].qText);
 		$(".result").text("");
 	}
 	
 	function refreshAnswers() {
+		const indices = ["0", "1", "2", "3"];
+		shuffleArray(indices);
+		
 		$(".card").each(function() {
-			$(this).text(questions[qNum].answerText[parseInt(this.getAttribute("data-answer"))]);
+			
+			
+			var index = parseInt(indices[0]);
+			
+			$(this).text(questions[0].answerArray[index].answerText);
+			
+			indices.splice(0, 1);
 		}); 
 	}
 	
@@ -116,10 +170,10 @@ $(document).ready(function() {
 	
 	function shuffleArray(array) {
 		for (var i = array.length - 1; i >= 0; i--) {
-			//generate random number between 0 and i
+			// generate random number between 0 and i
 			var j = Math.floor(Math.random() * (i + 1));	
 			
-			//swap the array at the current index with the array at the index of the random number generated
+			// swap the array at the current index with the array at the index of the random number generated
 			var temp = array[i];
 			array[i] = array[j];
 			array[j] = temp;

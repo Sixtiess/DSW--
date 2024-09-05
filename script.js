@@ -4,20 +4,23 @@ $(document).ready(function() {
 	//An array of all the possible questions
 	const allQuestions = [
 		"What is 1 + 1?", 
-		"What is 2 + 2?"
+		"What is 2 + 2?",
+		"What is point-slope form?",
 	];
 	
 	//An array that contains the answers to those questions, in order (so answers[0] = the answer to allQuestions[0], answers[1] = right answer to allQuestions[1], etc.)
 	//The answer is not stored as the actual answer to the question, but as the number corresponding to the answer a through d (0 = a, 1 = b, 2 = c, 3 = d);
 	const answers = [
 		"2", 
-		"0"
+		"0",
+		"2"
 	];
 	
 	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
 	const answersText = [
 		"1", "87", "2", "idk",
-		"4", "12094124", "sqrt(43)", "e"
+		"4", "12094124", "sqrt(43)", "e",
+		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1"
 	];
 	
 	//An array that contains question objects that have an answer and a question, allows for the questions to be scrambled in a random order, and can also allow a set number of random questions to be chosen

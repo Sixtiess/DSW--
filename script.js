@@ -94,4 +94,16 @@ $(document).ready(function() {
 		$(".card").css("visibility", "visible");
 	}
 	
+	function shuffleArray(array) {
+		for (var i = array.length - 1; i >= 0; i--) {
+			//generate random number between 0 and i
+			var j = Math.floor(Math.random() * (i + 1));	
+			
+			//swap the array at the current index with the array at the index of the random number generated
+			var temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+	}
+	
 });

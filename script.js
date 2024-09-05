@@ -3,24 +3,36 @@ $(document).ready(function() {
 	
 	//An array of all the possible questions
 	const allQuestions = [
-		"What is 1 + 1?", 
-		"What is 2 + 2?",
 		"What is point-slope form?",
+		"Find the derivative: f(x) = sqrt(x)",
+		"What is the value of sin(0)?",
+		"What is one kind of nonremoveable discontinuity?",
+		"What does a derivative define?",
+		"How many pieces can a piecewise function have?",
+		"Find the derivative: f(x) = sin(x)"
 	];
 	
 	//An array that contains the answers to those questions, in order (so answers[0] = the answer to allQuestions[0], answers[1] = right answer to allQuestions[1], etc.)
 	//The answer is not stored as the actual answer to the question, but as the number corresponding to the answer a through d (0 = a, 1 = b, 2 = c, 3 = d);
 	const answers = [
-		"2", 
+		"2",
+		"3",
 		"0",
-		"2"
+		"2",
+		"1",
+		"3",
+		"0"
 	];
 	
 	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
-	const answersText = [
-		"1", "87", "2", "idk",
-		"4", "12094124", "sqrt(43)", "e",
-		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1"
+	const answersText = [ 
+		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1",
+		"f(x) = 1/sqrt(x)","f(x) = 1/2*sqrt(x)","f'(x) = 1/sqrt(x)","f'(x) = 1/2*sqrt(x)"
+		"1","0","1/2","sqrt(3)/2",
+		"Hole","Euclidian","Asymptotic","Triangular",
+		"Area under a function","Slope","Volume","Domain",
+		"2","5","10","Infinite",
+		"f'(x) = cos(x)","f'(x) = tan(x)","f'(x) = csc(x)","f'(x) = sec(x)"
 	];
 	
 	//An array that contains question objects that have an answer and a question, allows for the questions to be scrambled in a random order, and can also allow a set number of random questions to be chosen

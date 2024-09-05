@@ -35,6 +35,11 @@ $(document).ready(function() {
 		"f'(x) = cos(x)","f'(x) = tan(x)","f'(x) = csc(x)","f'(x) = sec(x)"
 	];
 	
+	//An array to hold the text for the answer cards to show, this array should have 4 entries for each question (the 4 possible answers)
+	const answersText = [
+		"y=mx+b","y=a(x-h)+k","y-y1=m(x-x1)","x=nx^n-1"
+	];
+	
 	//An array that contains question objects that have an answer and a question, allows for the questions to be scrambled in a random order, and can also allow a set number of random questions to be chosen
 	const questions = [];
 	
